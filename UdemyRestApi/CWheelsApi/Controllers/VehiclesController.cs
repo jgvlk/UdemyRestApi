@@ -48,6 +48,13 @@ namespace CWheelsApi.Controllers
             }
         }
 
+        // GET: api/Vehicles/Test/5
+        [HttpGet("[action]/{id}")]
+        public int Test(int Id)
+        {
+            return Id;
+        }
+
         // POST api/<VehiclesController>
         [HttpPost]
         public IActionResult Post([FromBody] Vehicle vehicle)
@@ -70,6 +77,7 @@ namespace CWheelsApi.Controllers
             {
                 entity.Title = vehicle.Title;
                 entity.Price = vehicle.Price;
+                entity.Color = vehicle.Color;
                 _cWheelsDbContext.SaveChanges();
                 return Ok("Record updated successfully");
             }
