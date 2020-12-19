@@ -29,6 +29,7 @@ namespace CWheelsApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMvc().AddXmlSerializerFormatters();
             services.AddDbContext<CWheelsDbContext>(option => option.UseSqlServer(@"SERVER=.\MSSQLDEV;DATABASE=UdemyRestApi;TRUSTED_CONNECTION=True;"));
         }
 
