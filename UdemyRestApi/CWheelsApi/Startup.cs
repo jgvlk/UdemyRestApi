@@ -10,6 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CWheelsApi.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace CWheelsApi
 {
@@ -26,10 +29,11 @@ namespace CWheelsApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<CWheelsDbContext>(option => option.UseSqlServer(@"SERVER=.\MSSQLDEV;DATABASE=UdemyRestApi;TRUSTED_CONNECTION=True;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, CWheelsDbContext cWheelsDbContext)
         {
             if (env.IsDevelopment())
             {
@@ -39,6 +43,8 @@ namespace CWheelsApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            cWheelsDbContext.Database.EnsureCreated();
 
             app.UseAuthorization();
 
