@@ -13,7 +13,9 @@ namespace CWheelsApi.Data
         public CWheelsDbContext(DbContextOptions<CWheelsDbContext> options) : base(options)
         {
         }
-
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Image> Images {get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
