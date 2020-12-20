@@ -45,8 +45,6 @@ namespace CWheelsApi
 
             app.UseRouting();
 
-            cWheelsDbContext.Database.EnsureCreated();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
